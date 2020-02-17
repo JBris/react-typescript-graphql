@@ -30,9 +30,9 @@ async function bootstrap() {
   const server = new ApolloServer({
     schema,
     playground: true,
+    introspection: true,
   });
 
-  // Start the server
   const { url } = await server.listen(PORT);
   console.log(`Server is running, GraphQL Playground available at ${url}`);
 }
