@@ -1,30 +1,13 @@
+import GitCollectionResolver from "./graphql/resolvers/GitCollectionResolver";
 import { ApolloServer } from "apollo-server";
-import { buildSchema, ObjectType, Field, Resolver, Query } from "type-graphql";
+import { buildSchema } from "type-graphql";
 import "reflect-metadata"
 
 const PORT = 3000;
 
-@ObjectType()
-class HelloWorld {
-  
-  @Field()
-  message: string
-
-} 
-
-@Resolver(HelloWorld) 
-class HelloWorldResolver {
-
-  @Query(returns => [HelloWorld])
-  hello(){
-    return [{ message: "hello world" }];
-  }
-
-}
-
 async function bootstrap() {
   const schema = await buildSchema({
-    resolvers: [HelloWorldResolver],
+    resolvers: [ GitCollectionResolver ]
   });
 
   const server = new ApolloServer({

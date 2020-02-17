@@ -13,6 +13,8 @@ services:
         NODE_TAG: $NODE_TAG
     volumes:
       - ./server:/app
+    environment:
+      NODE_ENV: $NODE_ENV
     ports:
       - "${NODE_PORT}:3000"
     labels:
