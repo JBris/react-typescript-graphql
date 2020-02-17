@@ -4,7 +4,7 @@ FROM node:${NODE_TAG}
  
 WORKDIR /app
 COPY . .
-RUN npm install --no-optional
+RUN npm install --no-optional && npm install -g typescript
 
 EXPOSE 3000
 

@@ -1,7 +1,7 @@
+import "reflect-metadata"
 import GitCollectionResolver from "./graphql/resolvers/GitCollectionResolver";
 import { ApolloServer } from "apollo-server";
 import { buildSchema } from "type-graphql";
-import "reflect-metadata"
 
 const PORT = 3000;
 
