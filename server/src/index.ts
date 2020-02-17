@@ -1,9 +1,40 @@
-import app from "./app";
+import { ApolloServer } from "apollo-server";
+import { buildSchema, ObjectType, Field, Resolver, Query } from "type-graphql";
+import "reflect-metadata"
 
-const port = app.get("port");
+const PORT = 3000;
 
-const server = app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
-});
+@ObjectType()
+class HelloWorld {
+  
+  @Field()
+  message: string
 
-export default server;
+} 
+
+@Resolver(HelloWorld) 
+class HelloWorldResolver {
+
+  @Query(returns => [HelloWorld])
+  hello(){
+    return [{ message: "hello world" }];
+  }
+
+}
+
+async function bootstrap() {
+  const schema = await buildSchema({
+    resolvers: [HelloWorldResolver],
+  });
+
+  const server = new ApolloServer({
+    schema,
+    playground: true,
+  });
+
+  // Start the server
+  const { url } = await server.listen(PORT);
+  console.log(`Server is running, GraphQL Playground available at ${url}`);
+}
+
+bootstrap();

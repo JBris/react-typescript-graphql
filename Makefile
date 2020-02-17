@@ -21,10 +21,13 @@ start:
 stop:
 	docker-compose $(a) stop
 
-tsc:
+ts:
 	docker-compose exec node npm run build-ts
 
 restart:
+	docker-compose restart $(s)
+
+ts-restart:
 	docker-compose exec node npm run build-ts && docker-compose restart $(s)
 
 ls:
@@ -34,7 +37,7 @@ vol:
 	docker volume ls
 
 log:
-	docker logs $(PROJECT_NAME)_node
+	docker-compose logs node
 	
 #See docker-compose rm
 #make rm a="--help"

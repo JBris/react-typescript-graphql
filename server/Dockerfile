@@ -1,17 +1,12 @@
 ARG NODE_TAG
 
 FROM node:${NODE_TAG}
-
-COPY package*.json ./
-
-RUN npm install --no-optional
-
+ 
 WORKDIR /app
-
 COPY . .
+RUN npm install --no-optional
 
 EXPOSE 3000
 
-RUN npm run build-ts
-
+RUN tsc
 CMD [ "npm", "start" ]
