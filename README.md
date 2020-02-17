@@ -1,4 +1,4 @@
-# react-express-graphql
+# react-typescript-graphql
 
 ## Quickstart
 
@@ -7,8 +7,6 @@ This will pull all required Docker images and build your containers.
 
 ## Server
 
-An Express-GraphQL server written in TypeScript. Searches for git repos hosted on GitHub, Bitbucket, and GitLab.  
+A GraphQL server written in TypeScript. Searches for git repos hosted on GitHub, Bitbucket, and GitLab.  
 
 Visit $NODE_HOST/graphiql to access GraphQL Explorer.
-
-See package.json for dependencies.
