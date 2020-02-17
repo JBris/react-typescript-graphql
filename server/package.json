@@ -4,7 +4,8 @@
   "description": "An Express-GraphQL server written in TypeScript",
   "main": "index.js",
   "scripts": {
-    "start": "node src/",
+    "start": "node dist/",
+    "start-dev": "nodemon -w src --ext ts --exec ts-node src/index.ts",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "watch-node": "nodemon dist/server.js",
@@ -13,16 +14,17 @@
   "author": "James Bristow",
   "license": "ISC",
   "devDependencies": {
-    "@types/body-parser": "^1.19.0",
     "@types/express": "^4.17.2",
     "@types/graphql": "^14.5.0",
     "@types/node": "^13.7.1",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
     "graphql": "^14.6.0",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^0.17.6"

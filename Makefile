@@ -21,8 +21,11 @@ start:
 stop:
 	docker-compose $(a) stop
 
+tsc:
+	docker-compose exec node npm run build-ts
+
 restart:
-	docker-compose restart $(s)
+	docker-compose exec node npm run build-ts && docker-compose restart $(s)
 
 ls:
 	docker-compose ps 
