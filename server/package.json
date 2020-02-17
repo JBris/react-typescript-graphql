@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "apollo-server": "^2.10.1",
-    "axios": "^0.19.2",
+    "got": "^10.5.7",
     "graphql": "^14.6.0",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^0.17.6"
