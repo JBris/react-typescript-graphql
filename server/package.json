@@ -1,0 +1,12 @@
+{
+  "name": "express-graphql-typescript",
+  "version": "1.0.0",
+  "description": "An Express-GraphQL server written in TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "James Bristow",
+  "license": "ISC"
+}

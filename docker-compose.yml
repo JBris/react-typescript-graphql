@@ -1,0 +1,37 @@
+version: "3.5"
+
+services:
+  node:
+    image: "node:${NODE_TAG}"
+    container_name: "${PROJECT_NAME}_node"
+    stop_grace_period: 60s
+    restart: always
+    build: 
+      dockerfile: Dockerfile
+      context: ./server
+      args:
+        NODE_TAG: $NODE_TAG
+    volumes:
+      - ./server:/app
+    ports:
+      - "${NODE_PORT}:3000"
+    labels:
+      - "traefik.http.routers.${PROJECT_NAME}_node=Host(`node.${PROJECT_BASE_URL}`)"
+  
+  nginx:
+    image: nginx:$NGINX_TAG
+    container_name: "${PROJECT_NAME}_nginx"
+    restart: always
+    depends_on:
+      - node
+    ports:
+      - ${NGINX_PORT}:80
+    volumes:
+      - ./server:/var/www/html
+      - ./services/nginx/conf.d:/etc/nginx/conf.d
+    labels:
+      - "traefik.http.routers.${PROJECT_NAME}_nginx=Host(`nginx.${PROJECT_BASE_URL}`)"
+
+networks:
+  default:
+      name: react_node
