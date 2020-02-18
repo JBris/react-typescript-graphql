@@ -1,32 +1,32 @@
-import { IGitHost, IGitCollection } from "git";
+import { IGitHost, IGitCollection, IGit } from "git";
 import { injectable } from "inversify";
 import got from "got";
+import { URLSearchParams } from 'url';
 
 @injectable()
 class GitHub implements IGitHost {
     protected readonly endpoint : string = "https://api.github.com/search/repositories";
 
-    async search() : Promise<IGitCollection> {
-        // res = await self.session.get(
-        //     self.endpoint,
-        //     params={
-        //         'q': project,
-        //         'per_page': quantity
-        //     } 
-        // )
+    async search(project : string, quantity: number) : Promise<IGitCollection> {
+        const searchParams = new URLSearchParams([['q', project], ['per_page', quantity.toString() ]]);
+        const body : any = await got(this.endpoint,{ searchParams, responseType: 'json', resolveBodyOnly: true } );
+        const items: any[] = body.items;
 
-        // const json = await got(this.endpoint);
-        // const res : Response<'json'> = await (async () => {
-        //     try {
-        //         const response = await got('https://sindresorhus.com');
-        //         console.log(response.body);
-        //         //=> '<!doctype html> ...'
-        //     } catch (error) {
-        //         console.log(error.response.body);
-        //         //=> 'Internal server error ...'
-        //     }
-        // })();
-        return { items: [{id: "foo", repo: "bar", author: "blah", host: "blah", description: "blah", htmlUrl: "d", cloneUrl: "d", tagsUrl: "s"}] };
+        let gitCollection : IGitCollection = { items: [] };
+        items.forEach(repo => {
+            let searchResult : IGit = {};
+            searchResult.id = repo.name;
+            searchResult.repo = repo.name;
+            searchResult.author = repo.owner.login;
+            searchResult.host = "github.com";
+            searchResult.htmlUrl = repo.html_url;
+            searchResult.description = repo.description;
+            searchResult.tagsUrl = repo.tags_url;
+            searchResult.cloneUrl = repo.clone_url;
+            gitCollection.items.push(searchResult);
+        });
+
+        return gitCollection;
     }
 }
 

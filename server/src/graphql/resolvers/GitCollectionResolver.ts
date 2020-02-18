@@ -22,6 +22,7 @@ class GitCollectionResolver {
   async gitRepos(@Args() { provider, project, quantity }: GitReposArgs) : Promise<GitCollection> {
     const gitHost : IGitHost | undefined = this.gitHosts.get(provider);
     if(!gitHost) { throw new ApolloError(`Provider unavailable: ${provider}`); }
+    if (!quantity){ quantity = 5; }
     return await gitHost.search(project, quantity);
   }
 

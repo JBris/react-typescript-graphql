@@ -1,12 +1,12 @@
 export interface IGit {
-    id: string
-    repo: string
-    author: string
-    host: string
-    htmlUrl: string
-    tagsUrl: string
-    cloneUrl: string
-    description: string
+    id?: string
+    repo?: string
+    author?: string
+    host?: string
+    htmlUrl?: string
+    tagsUrl?: string
+    cloneUrl?: string
+    description?: string
 }
 
 export interface IGitCollection {
@@ -14,5 +14,5 @@ export interface IGitCollection {
 }
 
 export interface IGitHost {
-    search(project : string, quantity: number | undefined): Promise<IGitCollection>;
+    search(project : string, quantity: number): Promise<IGitCollection>;
 }
