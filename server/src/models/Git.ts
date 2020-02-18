@@ -1,7 +1,8 @@
+import { IGit } from "git";
 import { ObjectType, Field, ID } from "type-graphql";
 
 @ObjectType()
-class Git {
+class Git implements IGit {
   
     @Field(type => ID)
     id: string

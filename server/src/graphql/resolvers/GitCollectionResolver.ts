@@ -12,4 +12,11 @@ class GitCollectionResolver {
 
 }
 
+
+ // app = info.context['request'].app
+// search_map = app['search_map']
+// if provider not in search_map: raise GraphQLError('Provider unavailable: ' + provider)
+// git = search_map[provider]
+// return await git.search(project, quantity)
+
 export default GitCollectionResolver;

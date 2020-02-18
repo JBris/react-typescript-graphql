@@ -1,7 +1,7 @@
 import Providers from "../../services/git/Providers";
 
 import { ArgsType, Field, Int } from "type-graphql";
-import { Min, Max } from "class-validator";
+import { Min, Max, MinLength } from "class-validator";
 
 @ArgsType()
 class GitReposArgs {
@@ -9,6 +9,7 @@ class GitReposArgs {
   provider: Providers;
 
   @Field({ description: "The name of the project" })
+  @MinLength(1)
   project: string;
 
   @Field(type => Int, { nullable: true, description: "The number of results to return", defaultValue: 5 })
