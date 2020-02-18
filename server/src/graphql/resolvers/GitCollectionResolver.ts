@@ -4,6 +4,7 @@ import { Resolver, Query, Args } from "type-graphql";
 import { IGitHost } from "git";
 import Providers from "../../services/git/Providers";
 import { gitContainer } from "../../services/inversify.config";
+import { ApolloError } from "apollo-server";
 
 @Resolver(of => GitCollection) 
 class GitCollectionResolver {
@@ -19,7 +20,9 @@ class GitCollectionResolver {
 
   @Query(returns => GitCollection)
   async gitRepos(@Args() { provider, project, quantity }: GitReposArgs) : Promise<GitCollection> {
-    return { items: [] };
+    const gitHost : IGitHost | undefined = this.gitHosts.get(provider);
+    if(!gitHost) { throw new ApolloError(`Provider unavailable: ${provider}`); }
+    return await gitHost.search(project, quantity);
   }
 
 }

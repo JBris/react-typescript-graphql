@@ -14,5 +14,5 @@ export interface IGitCollection {
 }
 
 export interface IGitHost {
-    search(): Promise<IGitCollection>;
+    search(project : string, quantity: number | undefined): Promise<IGitCollection>;
 }
