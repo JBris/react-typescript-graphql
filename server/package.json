@@ -14,6 +14,7 @@
   "author": "James Bristow",
   "license": "ISC",
   "devDependencies": {
+    "@types/cheerio": "^0.22.16",
     "@types/graphql": "^14.5.0",
     "@types/node": "^13.7.1",
     "nodemon": "^2.0.2",
@@ -22,6 +23,7 @@
   },
   "dependencies": {
     "apollo-server": "^2.10.1",
+    "cheerio": "^1.0.0-rc.3",
     "got": "^10.5.7",
     "graphql": "^14.6.0",
     "inversify": "^5.0.1",
