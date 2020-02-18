@@ -1,9 +1,21 @@
 import GitCollection from "../../models/GitCollection";
 import GitReposArgs from "../args/GitReposArgs";
 import { Resolver, Query, Args } from "type-graphql";
+import { IGitHost } from "git";
+import Providers from "../../services/git/Providers";
+import { gitContainer } from "../../services/inversify.config";
 
-@Resolver(GitCollection) 
+@Resolver(of => GitCollection) 
 class GitCollectionResolver {
+  
+  protected gitHosts: Map<string, IGitHost>;
+ 
+  public constructor() {
+    this.gitHosts = new Map<string, IGitHost>();
+    for (const provider in Providers) {
+      this.gitHosts.set(provider, gitContainer.get<IGitHost>(provider));
+    }
+  }
 
   @Query(returns => GitCollection)
   async gitRepos(@Args() { provider, project, quantity }: GitReposArgs) : Promise<GitCollection> {
@@ -11,12 +23,5 @@ class GitCollectionResolver {
   }
 
 }
-
-
- // app = info.context['request'].app
-// search_map = app['search_map']
-// if provider not in search_map: raise GraphQLError('Provider unavailable: ' + provider)
-// git = search_map[provider]
-// return await git.search(project, quantity)
 
 export default GitCollectionResolver;

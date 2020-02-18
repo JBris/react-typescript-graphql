@@ -13,6 +13,6 @@ export interface IGitCollection {
     items: IGit[]
 }
 
-export interface IGitRepos {
+export interface IGitHost {
     search(): Promise<IGitCollection>;
 }

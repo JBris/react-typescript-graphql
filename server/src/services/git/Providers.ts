@@ -1,9 +1,9 @@
 import { registerEnumType } from "type-graphql";
 
 enum Providers {
-    GITHUB = "github",
-    GITLAB = "gitlab",
-    BITBUCKET = "bitbucket",
+    GITHUB = "GITHUB",
+    GITLAB = "GITLAB",
+    BITBUCKET = "BITBUCKET",
 }
 
 registerEnumType(Providers, {

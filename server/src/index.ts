@@ -7,7 +7,7 @@ const PORT = 3000;
 
 async function bootstrap() {
   const schema = await buildSchema({
-    resolvers: [ GitCollectionResolver ]
+    resolvers: [ GitCollectionResolver ],
   });
 
   const server = new ApolloServer({
