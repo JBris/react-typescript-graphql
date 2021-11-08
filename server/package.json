@@ -22,7 +22,7 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
-    "apollo-server": "^2.10.1",
+    "apollo-server": "^2.25.3",
     "cheerio": "^1.0.0-rc.3",
     "got": "^10.5.7",
     "graphql": "^14.6.0",
