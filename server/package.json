@@ -24,7 +24,7 @@
   "dependencies": {
     "apollo-server": "^2.10.1",
     "cheerio": "^1.0.0-rc.3",
-    "got": "^10.5.7",
+    "got": "^11.8.5",
     "graphql": "^14.6.0",
     "inversify": "^5.0.1",
     "reflect-metadata": "^0.1.13",
